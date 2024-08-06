@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{%block title%} SGE - Fornecedores {% endblock %}
+{% block content %}
+    <style>
+        .card-body {
+            text-align: center; /* Centraliza o texto */
+        }
+
+        .space {
+            margin-top: 10px;
+        }
+
+    </style>
+    <div class="container mt-4">
+        <h3>Deletar Fornecedor</h3>
+        <div class="card">
+            <div class="card-body">
+                <h5>Realmente quer DELETAR o Fornecedor <strong>{{ suppliers.name }}</strong>?</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger space"><i class="bi bi-trash">  DELETAR</i></button>
+                </form>
+            </div>
+            <a class="container mt-4 d-flex justify-content-center btn btn-secondary" href="{% url 'supplier_list' %}"><strong>Cancelar e ir para Lista de Fornecedores</strong></a>
+        </div>
+    </div>
+{% endblock %}

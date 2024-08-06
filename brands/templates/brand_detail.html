@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{%block title%} SGE - Marcas {% endblock %}
+{% block content %}
+<div class="back container mt-4">
+    <h3 class="display-6 d-flex justify-content-center">Detalhes da Marca</h3>
+    <style>
+        .card-body {
+            text-align: center; /* Centraliza o texto */
+        }
+        .btn-group {
+            margin-top: 10px; /* Espaço entre o texto e os botões */
+        }
+
+        .space {
+            margin-left: 20px;
+        }
+
+        .back{
+            background-color: rgb(24, 24, 24);
+            border-radius: 1rem;
+            padding: 10px;
+        }
+    </style>
+    
+    <div class="card container mt-4 d-flex justify-content-center" style="width: 18rem;">
+        <div class="card-body">
+          <h1 class="card-title">{{ brands.name }}</h1>
+          <p class="card-text">{{ brands.description }}</p>
+          <a href="{% url 'brand_update' brands.pk %}" class="btn btn-warning"><i class="bi bi-pencil">  Editar</i></a>
+          <a href="{% url 'brand_delete' brands.pk %}" class="btn btn-danger space"><i class="bi bi-trash">  Excluir</i></a>
+        </div>
+      </div>
+      <a class="container mt-4 d-flex justify-content-center btn btn-secondary" href="{% url 'brand_list' %}">Voltar para Lista de Marcas</a>
+</div>
+{% endblock %}

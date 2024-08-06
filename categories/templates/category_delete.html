@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{%block title%} SGE - Categorias {% endblock %}
+{% block content %}
+    <style>
+        .card-body {
+            text-align: center; /* Centraliza o texto */
+        }
+
+        .space {
+            margin-top: 10px;
+        }
+
+    </style>
+    <div class="container mt-4">
+        <h3>Deletar Categoria</h3>
+        <div class="card">
+            <div class="card-body">
+                <h5>Realmente quer DELETAR a Categoria <strong>{{ categories.name }}</strong>?</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger space"><i class="bi bi-trash">  DELETAR</i></button>
+                </form>
+            </div>
+            <a class="container mt-4 d-flex justify-content-center btn btn-secondary" href="{% url 'brand_list' %}"><strong>Cancelar e ir para Lista de Categorias</strong></a>
+        </div>
+    </div>
+{% endblock %}

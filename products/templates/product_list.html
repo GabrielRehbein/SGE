@@ -1,0 +1,104 @@
+<style>
+
+    .click {
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: bold;
+    }
+
+    .click:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease;   
+        text-decoration: underline;
+    }
+</style>
+
+
+{% extends 'base.html' %}
+
+
+{%block title%} SGE - Produtos {% endblock %}
+
+{% block content %}
+    {% include 'components/_product_metrics.html' %}
+    <div class="row mb-4"></div>
+    <div class="row mb-3 lado">
+        <div class="col-md-6">
+            <form method="get" action="{% url 'product_list' %}">
+                <div class="input-group">
+                    <input type="text" placeholder="Nome..." class="form-control" name="title" value="{{ request.GET.title }}">
+                    <input type="text" placeholder="Número de Série..." class="form-control" name="serie_number" value="{{ request.GET.serie_number }}">
+                    <button  type="submit" class="btn btn-primary">Procurar     <i class="bi bi-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-success float-end" href="{% url 'product_create' %}">
+                <i class="bi bi-plus"></i> Novo Produto
+            </a>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-md-6">
+            <form method="get" action="{% url 'product_list' %}">
+                <div class="input-group">
+                    <select class="form-select" name="category">
+                        <option value="" {% if not request.GET.category %} selected {% endif %}>Todas Categorias</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:'s' %} selected {% endif %}>{{category}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select class="form-select" name="brand">
+                        <option value="" {% if not request.GET.brand %} selected {% endif %}>Todas Marcas</option>
+                        {% for brand in brands %}
+                            <option value="{{ brand.id }}" {% if request.GET.brand == brand.id|stringformat:'s' %} selected {% endif %}>{{brand}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button class="btn btn-primary " type="submit"><i class="bi bi-filter">Filtrar</i></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="table-responsive">
+        {% if products %}
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Marca</th>
+                        <th>Categoria</th>
+                        <th>Número de Série</th>
+                        <th>Preço de Custo</th>
+                        <th>Preço de Venda</th>
+                        <th>Quantidade</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{product.id}}</td>
+                            <td><a class="click" href="{% url 'product_detail' product.pk %}">{{product}}</a></td>
+                            <td>{{product.brand}}</td>
+                            <td>{{product.category}}</td>
+                            <td>{{product.serie_number}}</td>
+                            <td>{{product.cost_price}}</td>
+                            <td>{{product.selling_price}}</td>
+                            <td>{{product.quantity}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+        <h3>Nenhum Item Cadastrado</h3>
+        {% endif %}
+    </div>
+{% include 'components/_pagination.html' %}
+{% endblock %}

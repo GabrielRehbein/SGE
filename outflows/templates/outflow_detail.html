@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{%block title%} SGE - Saídas {% endblock %}
+{% block content %}
+<div class="back container mt-4">
+    <h3 class="display-6 d-flex justify-content-center">Detalhes de Saídas</h3>
+    <style>
+        .card-body {
+            text-align: center; /* Centraliza o texto */
+        }
+        .btn-group {
+            margin-top: 10px; /* Espaço entre o texto e os botões */
+        }
+
+        .space {
+            margin-left: 20px;
+        }
+
+        .back{
+            background-color: rgb(24, 24, 24);
+            border-radius: 1rem;
+            padding: 10px;
+        }
+    </style>
+    
+    <div class="card container mt-4 d-flex justify-content-center" style="width: 18rem;">
+        <div class="card-body">
+          <h1 class="card-title">{{ object.product }}</h1>
+          <p class="card-text"><i class="bi bi-box-seam-fill">   Saiu: </i><strong>{{ object.quantity }}</strong> Unidade(s)</p>
+          <p class="card-text">Na Data: <br> <strong>{{ object.created_at }}</strong></p>
+          <p class="card-text">{{ object.description }}</p>
+        </div>
+      </div>
+      <a class="container mt-4 d-flex justify-content-center btn btn-secondary" href="{% url 'outflow_list' %}">Voltar para Lista de Saídas</a>
+</div>
+{% endblock %}

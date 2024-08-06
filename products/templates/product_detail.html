@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{%block title%} SGE - Produtos {% endblock %}
+{% block content %}
+<div class="back container mt-4">
+    <h3 class="display-6 d-flex justify-content-center">Detalhes da Produto</h3>
+    <style>
+        .card-body {
+            text-align: center; /* Centraliza o texto */
+        }
+        .btn-group {
+            margin-top: 10px; /* Espaço entre o texto e os botões */
+        }
+
+        .space {
+            margin-left: 20px;
+        }
+
+        .back{
+            background-color: rgb(24, 24, 24);
+            border-radius: 1rem;
+            padding: 10px;
+        }
+
+        .less {
+            font-size: 12px;
+        }
+    </style>
+    
+    <div class="card container mt-4 d-flex justify-content-center" style="width: 18rem;">
+        <div class="card-body">
+          <h1 class="card-title">{{ products.title }}</h1>
+          <p class="card-text">Marca: <strong>{{ products.brand }}</strong></p>
+          <p class="card-text">Categoria: <strong>{{ products.category}}</strong></p>
+          <p class="card-text">{{ products.description }}</p>
+          <p class="card-text">Preço de Custo: <strong>R$ {{ products.cost_price }}</strong></p>
+          <p class="card-text">Preço de Venda: <strong>R$ {{ products.selling_price }}</strong></p>
+          <p class="card-text">Quantidade: <strong>{{ products.quantity }}</strong></p>
+          <p class="card-text less">Criado em: <br> {{ products.created_at }}</p>
+          <a href="{% url 'product_update' products.pk %}" class="btn btn-warning"><i class="bi bi-pencil">  Editar</i></a>
+          <a href="{% url 'product_delete' products.pk %}" class="btn btn-danger space"><i class="bi bi-trash">  Excluir</i></a>
+        </div>
+      </div>
+      <a class="container mt-4 d-flex justify-content-center btn btn-secondary" href="{% url 'product_list' %}">Voltar para Lista de Marcas</a>
+</div>
+{% endblock %}

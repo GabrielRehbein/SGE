@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{%block title%} SGE - Marcas {% endblock %}
+{% block content %}
+
+    <div class="container mt-4">
+        <h3>Cadastrar Marcas</h3>
+
+        <div class="card">
+            <div class="card-body">
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Cadastrar Marca</button>
+                </form>
+            </div>
+        </div>
+        <a class="btn btn-secondary mt-3" href="{% url 'brand_list' %}">Cancelar Cadastro e Voltar</a>
+    </div>
+    
+{% endblock %}
