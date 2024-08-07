@@ -43,6 +43,8 @@
                         <th>ID</th>
                         <th>Produto</th>
                         <th>Quantidade</th>
+                        <th>Valor de Venda Unitária</th>
+                        <th>Valor Total</th>
                         <th>Data de Saída</th>
                         
                     </tr>
@@ -54,6 +56,8 @@
                             <td>{{outflow.id}}</td>
                             <td><a class="click" href="{% url 'outflow_detail' outflow.pk %}">{{outflow.product.title}}</a></td>
                             <td>{{outflow.quantity}}</td>
+                            <td>R$ {{outflow.product.selling_price}}</td>
+                            <td>R$ {{outflow.total_price}}</td>
                             <td>{{outflow.created_at}}</td>
                         </tr>
                     {% endfor %}
