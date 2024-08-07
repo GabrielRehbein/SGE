@@ -20,6 +20,8 @@
 {%block title%} SGE - Saídas {% endblock %}
 
 {% block content %}
+{% include 'components/_sales_metrics.html' %}
+    <div class="row mb-4 lado"></div>
     <div class="row mb-3 lado">
         <div class="col-md-6">
             <form method="get" action="{% url 'outflow_list' %}">

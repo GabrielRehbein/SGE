@@ -1,7 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Outflow
-from products.models import Product
 from .forms import OutflowForm
 from core.metrics import get_metric_sales
 
@@ -27,7 +26,7 @@ class OutflowListView(ListView):
         for outflow in outflows:
             outflow.total_price = outflow.product.selling_price * outflow.quantity
         
-        
+        context['sales_metrics'] = get_metric_sales()
         context['outflows'] = outflows
         return context
     
