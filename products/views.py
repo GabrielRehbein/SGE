@@ -16,7 +16,7 @@ class ProductListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         filter_category = self.request.GET.get('category')
-        filter_brand = self.request.GET.get('filter_brand')
+        filter_brand = self.request.GET.get('brand')
         search_title = self.request.GET.get('title')
         search_serie_number = self.request.GET.get('serie_number')
 
