@@ -13,10 +13,13 @@
 </head>
 
 <body>
-  {% include 'components/_header.html' %}
-
+  {% if user.is_authenticated %}
+    {% include 'components/_header.html' %}
+  
   <div class="container-fluid">
-    {% include 'components/_sidebar.html' %}
+    
+      {% include 'components/_sidebar.html' %}
+  {% endif %}
     <div class="col py-3">
       <div class="container mt-4">
         <main>
