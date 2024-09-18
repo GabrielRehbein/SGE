@@ -1,19 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<style>
+  #title {
+    font-size: 33px;
+  }
+
+  
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">Sistema de Gestão de Estoque (SGE)</a>
-    <form action="{% url 'logout' %}" method="post">
+    <span class="navbar-brand text-white">Olá, {{ user.username }}</span>
+    <a class="navbar-brand text-white" id="title" href="/"><strong>Sistema de Gestão de Estoque (SGE)</strong></a>
+
+    <form action="{% url 'logout' %}" method="post" class="d-flex align-items-center">
       {% csrf_token %}
-      <ul class="nav flex-column align-items-start" id="menu">
-        <li>
-          <div style="margin-right: 130px;">
-            <button class="btn btn-link text-decoration-none nav-link px-0 align-middle">
-              <i class="bi bi-box-arrow-left fs-4"></i>
-              <span class="ms-1">Sair do Sistema</span>
-            </button>
-          </div>
-        </li>
-      </ul>
+      <button class="btn btn-link nav-link px-0 align-middle">
+        <i class="bi bi-box-arrow-left fs-4 exit "></i>
+        <span class="ms-1 ">Sair do Sistema</span>
+      </button>
     </form>
   </div>
-  
 </nav>

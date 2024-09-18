@@ -3,11 +3,14 @@
 {% block title %}SGE - Dashboards{% endblock %}
 
 {% block content %}
+  
+    {% include 'components/_ai_result.html' %}
     {% include 'components/_product_metrics.html' %}
     {% include 'components/_sales_metrics.html' %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    
     <div class="row mt-4 justify-content-center">
+      
       <div class="col-md-6 text-center">
         <h4 class="text-center mb-3">Valor de vendas (Últimos 7 Dias)</h4>
         <canvas id="dailySalesChart"></canvas>

@@ -1,17 +1,18 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import Product
 from .forms import ProductForm
 from categories.models import Category
 from brands.models import Brand
 from core.metrics import get_metric_products
 
-class ProductListView(LoginRequiredMixin, ListView):
+class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Product
     context_object_name = 'products'
     template_name = 'product_list.html'
     paginate_by = 10
+    permission_required = 'products.view_product'
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -37,27 +38,32 @@ class ProductListView(LoginRequiredMixin, ListView):
         context['product_metrics'] = get_metric_products()
         return context
     
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'product_create.html'
     success_url = reverse_lazy('product_list')
+    permission_required = 'products.add_product'
 
-class ProductDetailView(LoginRequiredMixin, DetailView):
+class ProductDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Product
     template_name = 'product_detail.html'
     context_object_name = 'products'
+    permission_required = 'products.view_product'
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'product_create.html'
     success_url = reverse_lazy('product_list')
+    permission_required = 'products.change_product'
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('product_list')
+    permission_required = 'products.delete_product'
 
 
 
