@@ -1,10 +1,10 @@
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from .models import Category
 from .forms import CategoryForm
-
-
+from .serializers import CategorySerializer
 
 
 class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
@@ -53,3 +53,13 @@ class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     template_name = 'category_update.html'
     success_url = reverse_lazy('category_list')
     permission_required = 'categories.change_category'
+
+
+class CategoryListCreateAPIView(ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CategoryRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer

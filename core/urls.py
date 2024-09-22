@@ -14,10 +14,10 @@ urlpatterns = [
 
     path('', home, name='home'),
 
-    path('api/v1/', include('brands.urls')),
-    path('api/v1/', include('categories.urls')),
-    path('api/v1/', include('suppliers.urls')),
-    path('api/v1/', include('inflows.urls')),
-    path('api/v1/', include('outflows.urls')),
-    path('api/v1/', include('products.urls')),
+    path('', include('brands.urls')),
+    path('', include('categories.urls')),
+    path('', include('suppliers.urls')),
+    path('', include('inflows.urls')),
+    path('', include('outflows.urls')),
+    path('', include('products.urls')),
 ]
