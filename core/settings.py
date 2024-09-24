@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework_simplejwt',
+
     'ai',
     'brands',
     'categories',
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'products',
     'inflows',
     'outflows',
+    'authentication',
 ]
 
 LOGIN_URL = 'login'
@@ -136,6 +139,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 OPENAI_API_KEY = config('OPENAI_API_KEY')
 OPENAI_MODEL = config('OPENAI_MODEL')

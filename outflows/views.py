@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
 from .serializers import OutflowSerializer
 from .models import Outflow
 from .forms import OutflowForm
@@ -56,9 +57,11 @@ class OutflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
 
 
 class OutflowListCreateAPIView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Outflow.objects.all()
     serializer_class = OutflowSerializer
 
 class OutflowRetrieveAPIView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Outflow.objects.all()
     serializer_class = OutflowSerializer

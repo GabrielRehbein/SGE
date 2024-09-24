@@ -3,7 +3,6 @@ from brands.models import Brand
 from categories.models import Category
 
 
-
 class Product(models.Model):
     title = models.CharField(max_length=200)
     brand = models.ForeignKey(Brand,
