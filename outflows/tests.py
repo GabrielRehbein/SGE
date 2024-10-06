@@ -43,4 +43,3 @@ class OutflowModelTests(TestCase):
 
         with self.assertRaises(IntegrityError):
             self.product.delete()
-

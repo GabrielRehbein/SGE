@@ -9,14 +9,12 @@ from .forms import OutflowForm
 from core.metrics import get_metric_sales
 
 
-
 class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Outflow
     context_object_name = 'outflows'
     template_name = 'outflow_list.html'
     paginate_by = 10
     permission_required = 'outflows.view_outflow'
-    
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -24,27 +22,24 @@ class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         if search:
             return queryset.filter(products__title__icontains=search)
         return queryset
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         outflows = Outflow.objects.all()
-        
+
         for outflow in outflows:
             outflow.total_price = outflow.product.selling_price * outflow.quantity
-        
+
         context['sales_metrics'] = get_metric_sales()
         context['outflows'] = outflows
         return context
-    
-    
-    
+
 
 class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Outflow
     context_object_name = 'outflows'
     template_name = 'outflow_detail.html'
     permission_required = 'outflows.view_outflow'
-
 
 
 class OutflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -60,6 +55,7 @@ class OutflowListCreateAPIView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Outflow.objects.all()
     serializer_class = OutflowSerializer
+
 
 class OutflowRetrieveAPIView(RetrieveAPIView):
     permission_classes = [IsAuthenticated]

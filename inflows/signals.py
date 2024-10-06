@@ -10,4 +10,3 @@ def update_product_quantity(sender, instance, created, **kwargs):
             product = instance.product
             product.quantity += instance.quantity
             product.save()
-        

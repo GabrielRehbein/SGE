@@ -1,4 +1,4 @@
-from django.db.models import Sum,F
+from django.db.models import Sum, F
 from django.utils import timezone
 from django.utils.formats import number_format
 from products.models import Product
@@ -24,23 +24,24 @@ def get_metric_products():
 
     return product_metrics
 
+
 def get_metric_sales():
 
     outflows = Outflow.objects.all()
     total_cost_value = sum(outflow.quantity * outflow.product.cost_price for outflow in outflows)
 
-    total_sales = Outflow.objects.count()  
+    total_sales = Outflow.objects.count()
 
     total_products_sold = Outflow.objects.aggregate(
-        total_products_sold=Sum('quantity')
-        )['total_products_sold'] or 0
-    
+    total_products_sold=Sum('quantity')
+    )['total_products_sold'] or 0
+
     total_sales_value = sum(outflow.quantity * outflow.product.selling_price for outflow in outflows)
     total_sales_profit = total_sales_value - total_cost_value
 
     sales_metrics = {
         'total_sales': total_sales,
-        'total_products_sold': total_products_sold,                          #ver oque é melhor
+        'total_products_sold': total_products_sold,
         'total_sales_value': number_format(total_sales_value, decimal_pos=2, force_grouping=True),
         'total_sales_profit': number_format(total_sales_profit, decimal_pos=2, force_grouping=True),
     }
@@ -62,8 +63,8 @@ def get_daily_sales_data():
         values.append(float(sales_total))
 
     return {
-        'dates':dates,
-        'values':values,
+        'dates': dates,
+        'values': values,
     }
 
 
@@ -79,11 +80,11 @@ def get_daily_sales_quantity_data():
         values.append(sales_quantity)
 
     return dict(
-        dates= dates,
+        dates=dates,
         values=values
     )
 
-    
+
 def get_graphic_product_by_category_metric():
 
     categories = Category.objects.all()

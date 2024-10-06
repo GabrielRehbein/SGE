@@ -3,7 +3,7 @@ from .models import Inflow
 
 
 class InflowForm(forms.ModelForm):
-    
+
     class Meta:
         model = Inflow
         fields = ('supplier', 'product', 'quantity', 'description',)

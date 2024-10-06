@@ -21,14 +21,13 @@ class InflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         if search:
             return queryset.filter(products__title__icontains=search)
         return queryset
-    
+
 
 class InflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Inflow
     context_object_name = 'inflows'
     template_name = 'inflow_detail.html'
     permission_required = 'inflows.view_inflow'
-
 
 
 class InflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -50,5 +49,3 @@ class InflowRetrieveAPIView(RetrieveAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Inflow.objects.all()
     serializer_class = InflowSerializer
-
-

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import  BrandListView, BrandCreateView, BrandDetailView, BrandDeleteView, BrandUpdateView, BrandListCreateAPIView, BrandRetrieveUpdateDestroyAPIView
+from .views import BrandListView, BrandCreateView, BrandDetailView, BrandDeleteView, BrandUpdateView, BrandListCreateAPIView, BrandRetrieveUpdateDestroyAPIView
 
 
 urlpatterns = [

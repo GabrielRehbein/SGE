@@ -16,7 +16,3 @@ class Outflow(models.Model):
 
     def __str__(self) -> str:
         return f'{str(self.quantity)}x - {str(self.product)}'
-
-
-
-

@@ -3,7 +3,6 @@ from products.models import Product
 from suppliers.models import Supplier
 
 
-
 class Inflow(models.Model):
     supplier = models.ForeignKey(Supplier,
     on_delete=models.PROTECT,
@@ -21,6 +20,3 @@ class Inflow(models.Model):
 
     def __str__(self) -> str:
         return f'{str(self.quantity)}x - {str(self.product)}'
-
-
-

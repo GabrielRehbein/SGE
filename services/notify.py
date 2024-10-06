@@ -8,7 +8,7 @@ class Notify:
 
     def send_sale_event(self, data):
         url = f'{self.__base_url}api/v1/webhooks/sale/'
-        response = requests.post(
+        requests.post(
             url=url,
             json=data,
         )

@@ -3,6 +3,7 @@ from services.notify import Notify
 from django.dispatch import receiver
 from .models import Outflow
 
+
 @receiver(post_save, sender=Outflow)
 def update_product_quantity(sender, instance, created, **kwargs):
     if created:
@@ -24,12 +25,10 @@ def send_outflow_events(sender, instance, **kwargs):
         'unitary_cost_price': float(instance.product.cost_price),
         'unitary_selling_price': float(instance.product.selling_price),
         'total_price': float(instance.product.selling_price * instance.quantity),
-        'profit': float(instance.product.selling_price * instance.quantity - instance.product.cost_price * instance.quantity), 
+        'profit': float(instance.product.selling_price * instance.quantity - instance.product.cost_price * instance.quantity),
         'description': instance.description,
     }
     try:
         notify.send_sale_event(data)
     except:
         pass
-    
-        

@@ -28,7 +28,6 @@ class SupplierCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     template_name = 'supplier_create.html'
     success_url = reverse_lazy('supplier_list')
     permission_required = 'suppliers.add_supplier'
-    
 
 
 class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
@@ -53,10 +52,11 @@ class SupplierUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     template_name = 'supplier_update.html'
     permission_required = 'suppliers.change_supplier'
 
-    
+
 class SupplierListCreateAPIView(ListCreateAPIView):
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
+
 
 class SupplierRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Supplier.objects.all()

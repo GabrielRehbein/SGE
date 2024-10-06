@@ -21,14 +21,13 @@ class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         if search:
             return queryset.filter(name__icontains=search)
         return queryset
-    
+
 
 class CategoryDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Category
     template_name = 'category_detail.html'
     context_object_name = 'categories'
     permission_required = 'categories.view_category'
-
 
 
 class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -39,7 +38,6 @@ class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     permission_required = 'categories.add_category'
 
 
-    
 class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Category
     template_name = 'category_delete.html'

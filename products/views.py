@@ -10,6 +10,7 @@ from categories.models import Category
 from brands.models import Brand
 from core.metrics import get_metric_products
 
+
 class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Product
     context_object_name = 'products'
@@ -33,20 +34,22 @@ class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         if search_serie_number:
             return queryset.filter(serie_number__icontains=search_serie_number)
         return queryset
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['brands'] = Brand.objects.all()
         context['product_metrics'] = get_metric_products()
         return context
-    
+
+
 class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'product_create.html'
     success_url = reverse_lazy('product_list')
     permission_required = 'products.add_product'
+
 
 class ProductDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Product
@@ -62,19 +65,19 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     success_url = reverse_lazy('product_list')
     permission_required = 'products.change_product'
 
+
 class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('product_list')
     permission_required = 'products.delete_product'
-    
 
 
 class ProductListCreateAPIView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    
+
 
 class ProductRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]

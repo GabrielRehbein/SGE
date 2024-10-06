@@ -45,6 +45,7 @@ class BrandDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('brand_list')
     permission_required = 'brands.delete_brand'
 
+
 class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Brand
     template_name = 'brand_update.html'
@@ -52,10 +53,12 @@ class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy('brand_list')
     permission_required = 'brands.change_brand'
 
+
 class BrandListCreateAPIView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
+
 
 class BrandRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]

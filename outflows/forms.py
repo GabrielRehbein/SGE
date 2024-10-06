@@ -4,7 +4,7 @@ from .models import Outflow
 
 
 class OutflowForm(forms.ModelForm):
-    
+
     class Meta:
         model = Outflow
         fields = ('product', 'quantity', 'description',)
@@ -18,7 +18,6 @@ class OutflowForm(forms.ModelForm):
             'quantity': 'Quantidade',
             'description': 'Descrição',
         }
-
 
     def clean_quantity(self):
         quantity = self.cleaned_data.get('quantity')

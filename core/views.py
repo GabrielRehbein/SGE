@@ -4,6 +4,7 @@ import json
 from .metrics import get_metric_products, get_metric_sales, get_daily_sales_data, get_daily_sales_quantity_data, get_graphic_product_by_category_metric, get_graphic_brand_by_category_metric
 from ai.models import AIResult
 
+
 @login_required(login_url='/login/')
 def home(request):
     context = {
@@ -17,4 +18,3 @@ def home(request):
         'ai_result': str(AIResult.objects.first().result)
     }
     return render(request, 'home.html', context)
-
