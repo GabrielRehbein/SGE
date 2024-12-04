@@ -14,7 +14,7 @@ def home(request):
         'daily_sales_quantity_data': json.dumps(get_daily_sales_quantity_data()),
         'product_by_category': json.dumps(get_graphic_product_by_category_metric()),
         'product_by_brand': json.dumps(get_graphic_brand_by_category_metric()),
-
-        'ai_result': str(AIResult.objects.first().result)
+        
+        'ai_result': str(AIResult.objects.first().result) if AIResult.objects.first()  else None
     }
     return render(request, 'home.html', context)
