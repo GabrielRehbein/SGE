@@ -2,6 +2,7 @@ from django.db.models.signals import post_save
 from services.notify import Notify
 from django.dispatch import receiver
 from .models import Outflow
+from ai.agents import SGEAgent
 
 
 @receiver(post_save, sender=Outflow)
@@ -32,3 +33,8 @@ def send_outflow_events(sender, instance, **kwargs):
         notify.send_sale_event(data)
     except:
         pass
+
+@receiver(post_save, sender=Outflow)
+def ai_generates_stock_insights(sender, instance, **kwargs):
+    sge_agent = SGEAgent()
+    ai_response = sge_agent.invoke()
