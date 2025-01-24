@@ -9,6 +9,7 @@ from .forms import OutflowForm
 from core.metrics import get_metric_sales
 
 
+
 class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Outflow
     context_object_name = 'outflows'

@@ -35,6 +35,6 @@ def send_outflow_events(sender, instance, **kwargs):
         pass
 
 @receiver(post_save, sender=Outflow)
-def ai_generates_stock_insights(sender, instance, **kwargs):
+def ai_generates_outflow_stock_insights(sender, instance, **kwargs):
     sge_agent = SGEAgent()
     ai_response = sge_agent.invoke()

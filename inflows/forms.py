@@ -19,3 +19,13 @@ class InflowForm(forms.ModelForm):
             'quantity': 'Quantidade',
             'description': 'Descrição',
         }
+    def clean_quantity(self):
+        quantity = self.cleaned_data.get('quantity')
+        product = self.cleaned_data.get('product')
+
+    
+        if quantity <= 0:
+            raise forms.ValidationError(
+                f'A quantidade {quantity} é invalida.'
+            )
+        return quantity
