@@ -94,13 +94,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('POSTGRES_NAME'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        #HOST -> quando estiver utilizando docker usar o nome do container que contem o DB.
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': config('POSTGRES_PORT'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sge',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'sge-sge_db-1',
+        'PORT': '5432'
     },
     'development': {
         'ENGINE': 'django.db.backends.sqlite3',
