@@ -1,0 +1,7 @@
+/venv/
+/__pycache__/
+.git
+.gitignore
+.flake8
+.create_data
+requirements_dev
