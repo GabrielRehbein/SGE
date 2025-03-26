@@ -1,1 +1,1 @@
-0 8 * * * cd /sge && /usr/local/bin/python manage.py send_relatory >> /var/log/cron.log 2>&1
+59 23 * * * cd /sge && /usr/local/bin/python manage.py send_relatory >> /var/log/cron.log 2>&1
