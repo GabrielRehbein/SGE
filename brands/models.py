@@ -10,6 +10,8 @@ class Brand(models.Model):
 
     class Meta:
         ordering = [Lower('name')]
+        verbose_name = 'Marca'
+        verbose_name_plural = 'Marcas'
 
     def __str__(self):
         return self.name

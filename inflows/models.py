@@ -17,6 +17,8 @@ class Inflow(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name = 'Entrada'
+        verbose_name_plural = 'Entradas'
 
     def __str__(self) -> str:
         return f'{str(self.quantity)}x - {str(self.product)}'

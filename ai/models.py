@@ -7,3 +7,5 @@ class AIResult(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name = 'Resultado da IA'
+        verbose_name_plural = 'Resultados da IA'

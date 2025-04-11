@@ -13,6 +13,8 @@ class Outflow(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name = 'Saída'
+        verbose_name_plural = 'Saídas'
 
     def __str__(self) -> str:
         return f'{str(self.quantity)}x - {str(self.product)}'
